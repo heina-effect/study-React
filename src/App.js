@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 import React, {useState} from 'react';
-import 중요데이터 from './data.js'
+import Data from './data.js'
 import logo from './logo.svg';
 import main1 from './img/common1.jpg';
 import main2 from './img/common2.jpg';
@@ -9,7 +11,7 @@ import './App.css';
 
 function App() {
 
-  let [shoes, shoes변경] = useState(중요데이터);
+  let [shoes, shoes변경] = useState(Data);
   let [modal, modal변경] = useState(false);
 
   return (
@@ -24,6 +26,7 @@ function App() {
         </Nav>
         </Container>
       </Navbar>
+
       <Carousel fade className="carousel">
         <Carousel.Item>
           <img
@@ -61,29 +64,19 @@ function App() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+
       <div className="container">
         <div className="row">
-        <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-            <h4 onClick={()=>{modal변경(modal=true)}}>{shoes[0].title}</h4>
-            <p>{shoes[0].content}</p>
-            <p>{shoes[0].price}</p>
-          </div>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%" />
-            <h4>{shoes[1].title}</h4>
-            <p>{shoes[1].content}</p>
-            <p>{shoes[1].price}</p>
-          </div>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%" />
-            <h4>{shoes[2].title}</h4>
-            <p>{shoes[2].content}</p>
-            <p>{shoes[2].price}</p>
-          </div>
+          {
+            shoes.map((a,i)=>{
+              return <Card shoes={shoes[i]} i={i} key={i}/>
+              // return <Card shoes={a}/>
+            })
+          }
         </div>
       </div>
-      { modal === true ? <Modal/> : null }
+      {/* onClick={()=>{modal변경(modal=true)}}
+      { modal === true ? <Modal/> : null } */}
     </div>
   );
 }
@@ -108,4 +101,17 @@ function Modal(){
     </div>
   )
 }
+
+function Card(props){
+  return(
+    <div>
+      <div className="col-md-4">
+        <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1)+ '.jpg'} width="100%" />
+        <h4>{props.shoes.title}</h4>
+        <p>{props.shoes.content} & {props.shoes.price}</p>
+      </div>
+    </div>
+  )
+}
+
 export default App;
