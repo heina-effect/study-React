@@ -1,16 +1,14 @@
 /* eslint-disable */
-
 import React, {useState} from 'react';
+import Banner from'./Banner.js';
 import Data from './data.js'
 import logo from './logo.svg';
-import main1 from './img/common1.jpg';
-import main2 from './img/common2.jpg';
-import main3 from './img/common3.jpg';
-import {Navbar, Container, Nav, Carousel, Button } from 'react-bootstrap';
+import {Navbar, Container, Nav, Button } from 'react-bootstrap';
 import './App.css';
 
 function App() {
 
+  let [banner, banner변경] = useState(Banner);
   let [shoes, shoes변경] = useState(Data);
   let [modal, modal변경] = useState(false);
 
@@ -27,44 +25,8 @@ function App() {
         </Container>
       </Navbar>
 
-      <Carousel fade className="carousel">
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={main1}
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={main2}
-            alt="Second slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={main3}
-            alt="Third slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-
+      {banner}
+    
       <div className="container">
         <div className="row">
           {
@@ -80,7 +42,6 @@ function App() {
     </div>
   );
 }
-
 function Modal(){
   return (
     <div className="modal">
