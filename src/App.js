@@ -1,14 +1,16 @@
 /* eslint-disable */
 import React, {useState} from 'react';
 import Banner from'./Banner.js';
+import Detail from './Detail.js'
 import Data from './data.js'
 import logo from './logo.svg';
 import {Navbar, Container, Nav, Button } from 'react-bootstrap';
 import './App.css';
 
+import { Link, Route, Switch } from 'react-router-dom'
+
 function App() {
 
-  let [banner, banner변경] = useState(Banner);
   let [shoes, shoes변경] = useState(Data);
   let [modal, modal변경] = useState(false);
 
@@ -16,27 +18,39 @@ function App() {
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand href="#home">A+ shop</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav>
+          <Navbar.Brand href="#home">A+ shop</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link><Link to="/">Home</Link></Nav.Link>
+            <Nav.Link><Link to="/Detail">Detail</Link></Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
+      <Switch>
+        <Route exact path="/">
+          <Banner/>
+          <div className="container">
+            <div className="row">
+              {
+                shoes.map((a,i)=>{
+                  return <Card shoes={shoes[i]} i={i} key={i}/>
+                  // return <Card shoes={a}/>
+                })
+              }
+            </div>
+          </div>
+        </Route>
 
-      {banner}
-    
-      <div className="container">
-        <div className="row">
-          {
-            shoes.map((a,i)=>{
-              return <Card shoes={shoes[i]} i={i} key={i}/>
-              // return <Card shoes={a}/>
-            })
-          }
-        </div>
-      </div>
+        <Route path="/Detail">
+          <Detail/>
+        </Route>
+
+        <Route path="/:id">
+            <div>
+              아무거나 적었을 때 이거 보여줘
+            </div>
+        </Route>
+      </Switch>
+  
       {/* onClick={()=>{modal변경(modal=true)}}
       { modal === true ? <Modal/> : null } */}
     </div>
