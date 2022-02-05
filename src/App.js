@@ -1,11 +1,12 @@
 /* eslint-disable */
 import React, {useState} from 'react';
+import {Navbar, Container, Nav, Button, Spinner} from 'react-bootstrap';
+import './App.css';
 import Banner from'./Banner.js';
 import Detail from './Detail.js'
 import Data from './data.js'
 import logo from './logo.svg';
-import {Navbar, Container, Nav, Button } from 'react-bootstrap';
-import './App.css';
+import axios from 'axios';
 
 import { Link, Route, Switch } from 'react-router-dom'
 
@@ -13,6 +14,8 @@ function App() {
 
   let [shoes, shoes변경] = useState(Data);
   let [modal, modal변경] = useState(false);
+  let [spiner, spiner변경] = useState(true);
+  let [재고, 재고변경] = useState([10,11,12]);
 
   return (
     <div className="App">
@@ -37,11 +40,26 @@ function App() {
                 })
               }
             </div>
+            <button className="btn btn-primary" onClick={()=>{
+              {
+                spiner === true ?
+                <Spinner animation="border" variant="dark" /> : null
+              }
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((result)=>{
+                spiner === false;
+                var newData = result.data;
+                shoes변경([...shoes, ...newData]);
+              })
+              .catch(()=>{
+                spiner === false;
+                console.log('실패했어요!')
+              });
+            }}>더보기</button>
           </div>
         </Route>
-
         <Route path="/Detail/:id" >
-          <Detail shoes={shoes} />
+          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
         </Route>
 
         <Route path="/:id">
