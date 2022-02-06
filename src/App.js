@@ -1,14 +1,16 @@
 /* eslint-disable */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Navbar, Container, Nav, Button, Spinner} from 'react-bootstrap';
 import './App.css';
 import Banner from'./Banner.js';
 import Detail from './Detail.js'
 import Data from './data.js'
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import axios from 'axios';
 
 import { Link, Route, Switch } from 'react-router-dom'
+
+export let 재고context = React.createContext();
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">A+ shop</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/" href="#home">A+ shop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/Detail">Detail</Nav.Link>
@@ -31,15 +33,20 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Banner/>
+
           <div className="container">
-            <div className="row">
-              {
-                shoes.map((a,i)=>{
-                  return <Card shoes={shoes[i]} i={i} key={i}/>
-                  // return <Card shoes={a}/>
-                })
-              }
-            </div>
+
+            <재고context.Provider value={재고}>
+              <div className="row">
+                {
+                  shoes.map((a,i)=>{
+                    return <Card shoes={shoes[i]} i={i} key={i}/>
+                    // return <Card shoes={a}/>
+                  })
+                }
+              </div>
+            </재고context.Provider>
+
             <button className="btn btn-primary" onClick={()=>{
               {
                 spiner === true ?
@@ -59,7 +66,9 @@ function App() {
           </div>
         </Route>
         <Route path="/Detail/:id" >
-          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
+          <재고context.Provider value={재고}>
+            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
+          </재고context.Provider>
         </Route>
 
         <Route path="/:id">
@@ -74,6 +83,7 @@ function App() {
     </div>
   );
 }
+
 function Modal(){
   return (
     <div className="modal">
@@ -96,6 +106,9 @@ function Modal(){
 }
 
 function Card(props){
+
+  let 재고 = useContext(재고context);
+
   return(
     <div>
       <div className="col-md-4">
@@ -103,7 +116,17 @@ function Card(props){
         <h4>{props.shoes.title}</h4>
         <p>{props.shoes.content} & {props.shoes.price}</p>
       </div>
+      <Test/>
     </div>
+  )
+}
+
+function Test(){
+
+  let 재고 = useContext(재고context);
+
+  return(
+    <p>재고는 : {재고[0]}</p>
   )
 }
 

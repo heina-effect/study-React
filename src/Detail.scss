@@ -1,5 +1,13 @@
 
-$메인칼라 : #ff000f;
+$메인칼라 : #181515;
+
+.wow-enter { //애니메이션 시작할 때 적용할 CSS
+    opacity: 0;
+}
+.wow-enter-active { //애니메이션 동작할 때 적용할 CSS
+    opacity: 1;
+    transition: all 1000ms;
+}
 
 .red{
     color: $메인칼라;
