@@ -38,6 +38,7 @@ function Detail(props) {
       <박스>
         <제목 className="red">Detail</제목>
       </박스>
+
       {inputData}
       <input onChange={(e)=>{ inputData변경(e.target.value)}}/>
       
@@ -48,7 +49,7 @@ function Detail(props) {
         </div> 
         : null
       }
-      {/* {재고} */}
+      {재고}
       
 
       <div className="row">

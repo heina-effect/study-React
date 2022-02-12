@@ -1,16 +1,16 @@
 /* eslint-disable */
 import React, {useContext, useState} from 'react';
 import {Navbar, Container, Nav, Button, Spinner} from 'react-bootstrap';
+import { Link, Route, Switch } from 'react-router-dom';
+import {Provider} from 'react-redux';
 import './App.css';
 import Banner from'./Banner.js';
 import Detail from './Detail.js'
 import Data from './data.js'
-// import logo from './logo.svg';
 import axios from 'axios';
+import Cart from './Cart.js'
 
-import { Link, Route, Switch } from 'react-router-dom'
-
-export let 재고context = React.createContext();
+export let 재고context = React.createContext(); //범위 생성 문법
 
 function App() {
 
@@ -20,7 +20,9 @@ function App() {
   let [재고, 재고변경] = useState([10,11,12]);
 
   return (
+
     <div className="App">
+
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand as={Link} to="/" href="#home">A+ shop</Navbar.Brand>
@@ -36,6 +38,7 @@ function App() {
 
           <div className="container">
 
+            {/* 값을 공유할 html */}
             <재고context.Provider value={재고}>
               <div className="row">
                 {
@@ -65,17 +68,26 @@ function App() {
             }}>더보기</button>
           </div>
         </Route>
+
         <Route path="/Detail/:id" >
+
           <재고context.Provider value={재고}>
             <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
           </재고context.Provider>
+          
         </Route>
 
+        <Route path="/cart">
+          <Cart></Cart>
+        </Route>
+        
         <Route path="/:id">
             <div>
-              아무거나 적었을 때 이거 보여줘
+              잘못된경로입니다.
             </div>
         </Route>
+
+
       </Switch>
   
       {/* onClick={()=>{modal변경(modal=true)}}
@@ -98,7 +110,7 @@ function Modal(){
 
         <Modal.Footer>
           <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
+          <Button variant="primary">Save nges</Button>
         </Modal.Footer>
       </Modal.Dialog>
     </div>
@@ -107,6 +119,7 @@ function Modal(){
 
 function Card(props){
 
+  //hook 사용하기 useContext(범위이름)
   let 재고 = useContext(재고context);
 
   return(
