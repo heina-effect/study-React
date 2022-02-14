@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import './Detail.scss'
 import {재고context} from './App.js'
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 function Detail(props) {
   
@@ -64,8 +65,11 @@ function Detail(props) {
           <Info 재고={props.재고}></Info>
 
           <button className="btn btn-danger" onClick={()=>{
-            props.재고변경([9,10,11])
+            // props.재고변경([9,10,11])
+            props.dispatch({type : '항목추가', 데이터 : { id:3, name: '새로운상품', quan:1} });
+            history.push('/cart');
           }}>주문하기</button> 
+
           <button className="btn btn-danger" onClick={ ()=>{ 
               history.push('/');
             } }>뒤로가기</button> 
@@ -112,4 +116,11 @@ function Info(props){
   )
 }
 
-export default Detail;
+function state를props화(state){ //redux store 데이터 가져와서 props로 변환해주는 함수
+  return{
+    state : state.reducer,
+    alert열렸니 : state.reducer2
+  }
+
+}
+export default connect(state를props화)(Detail)
