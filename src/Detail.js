@@ -9,16 +9,16 @@ import { connect } from 'react-redux';
 
 function Detail(props) {
   
-  let [alert, alert변경] = useState(true);
-  let [inputData, inputData변경] = useState('');
+  let [alert, setAlert] = useState(true);
+  let [inputData, setInputData] = useState('');
 
-  let [누른탭,누른탭변경] = useState(0);
-  let [스위치, 스위치변경] = useState(false)
+  let [clickTab,setClickTab] = useState(0);
+  let [switchs, setSwitch] = useState(false)
   let 재고 = useContext(재고context);
 
   useEffect(()=>{
     let 타이머 = setTimeout(()=>{
-      alert변경(false);
+      setAlert(false);
     },2000);
     return ()=>{ clearTimeout(타이머) }
   },[alert]);
@@ -41,7 +41,7 @@ function Detail(props) {
       </박스>
 
       {inputData}
-      <input onChange={(e)=>{ inputData변경(e.target.value)}}/>
+      <input onChange={(e)=>{ setInputData(e.target.value)}}/>
       
       {
         alert === true ? 
@@ -62,10 +62,10 @@ function Detail(props) {
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}</p>
 
-          <Info 재고={props.재고}></Info>
+          <Info inventory={props.inventory}></Info>
 
           <button className="btn btn-danger" onClick={()=>{
-            // props.재고변경([9,10,11])
+            // props.setInventory([9,10,11])
             props.dispatch({type : '항목추가', 데이터 : { id:3, name: '새로운상품', quan:1} });
             history.push('/cart');
           }}>주문하기</button> 
@@ -78,15 +78,15 @@ function Detail(props) {
 
       <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
         <Nav.Item>
-          <Nav.Link eventKey="link-0" onClick={()=>{스위치변경(false); 누른탭변경(0)}}>Active</Nav.Link>
+          <Nav.Link eventKey="link-0" onClick={()=>{setSwitch(false); setClickTab(0)}}>Active</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1" onClick={()=>{스위치변경(false); 누른탭변경(1) }}>Option 2</Nav.Link>
+          <Nav.Link eventKey="link-1" onClick={()=>{setSwitch(false); setClickTab(1) }}>Option 2</Nav.Link>
         </Nav.Item>
       </Nav>
       
-      <CSSTransition in={스위치} classNames="wow" timeout={500}>
-        <TabContent 누른탭={누른탭} 스위치변경={스위치변경} /> 
+      <CSSTransition in={switchs} classNames="wow" timeout={500}>
+        <TabContent clickTab={clickTab} setSwitch={setSwitch} /> 
       </CSSTransition>
       
 
@@ -97,14 +97,14 @@ function Detail(props) {
 function TabContent(props){
 
   useEffect(()=>{
-    props.스위치변경(true)
+    props.setSwitch(true)
   })
 
-  if(props.누른탭 === 0){
+  if(props.clickTab === 0){
     return <div>0번째 내용입니다.</div>
-  }else if(props.누른탭 === 1){
+  }else if(props.clickTab === 1){
     return <div>1번째 내용입니다.</div>
-  }else if(props.누른탭 === 2){
+  }else if(props.clickTab === 2){
     return <div>2번째 내용입니다.</div>
   }
 }
@@ -112,7 +112,7 @@ function TabContent(props){
 
 function Info(props){
   return(
-    <p>재고 : {props.재고[0]}</p>
+    <p>재고 : {props.inventory[0]}</p>
   )
 }
 

@@ -14,10 +14,10 @@ export let 재고context = React.createContext(); //범위 생성 문법
 
 function App() {
 
-  let [shoes, shoes변경] = useState(Data);
-  let [modal, modal변경] = useState(false);
-  let [spiner, spiner변경] = useState(true);
-  let [재고, 재고변경] = useState([10,11,12]);
+  let [shoes, setShoes] = useState(Data);
+  let [modal, setModal] = useState(false);
+  let [spiner, setSpiner] = useState(true);
+  let [inventory, setInventory] = useState([10,11,12]);
 
   return (
 
@@ -29,6 +29,7 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/Detail">Detail</Nav.Link>
+            <Nav.Link as={Link} to="/Cart">Cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -39,7 +40,7 @@ function App() {
           <div className="container">
 
             {/* 값을 공유할 html */}
-            <재고context.Provider value={재고}>
+            <재고context.Provider value={inventory}>
               <div className="row">
                 {
                   shoes.map((a,i)=>{
@@ -59,7 +60,7 @@ function App() {
               .then((result)=>{
                 spiner === false;
                 var newData = result.data;
-                shoes변경([...shoes, ...newData]);
+                setShoes([...shoes, ...newData]);
               })
               .catch(()=>{
                 spiner === false;
@@ -71,8 +72,8 @@ function App() {
 
         <Route path="/Detail/:id" >
 
-          <재고context.Provider value={재고}>
-            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}/>
+          <재고context.Provider value={inventory}>
+            <Detail shoes={shoes} inventory={inventory} setInventory={setInventory}/>
           </재고context.Provider>
           
         </Route>
@@ -90,7 +91,7 @@ function App() {
 
       </Switch>
   
-      {/* onClick={()=>{modal변경(modal=true)}}
+      {/* onClick={()=>{setModal(modal=true)}}
       { modal === true ? <Modal/> : null } */}
     </div>
   );
@@ -137,7 +138,6 @@ function Card(props){
 function Test(){
 
   let 재고 = useContext(재고context);
-
   return(
     <p>재고는 : {재고[0]}</p>
   )
