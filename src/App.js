@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, {useContext, useState} from 'react';
 import {Navbar, Container, Nav, Button, Spinner} from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import './App.css';
 import Banner from'./Banner.js';
@@ -122,10 +122,11 @@ function Card(props){
 
   //hook 사용하기 useContext(범위이름)
   let 재고 = useContext(재고context);
+  let history = useHistory();
 
   return(
     <div>
-      <div className="col-md-4">
+      <div className="col-md-4" onClick={()=>{ history.push('/detail/' + props.shoes.id) }}>
         <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1)+ '.jpg'} width="100%" />
         <h4>{props.shoes.title}</h4>
         <p>{props.shoes.content} & {props.shoes.price}</p>

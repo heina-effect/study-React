@@ -66,7 +66,7 @@ function Detail(props) {
 
           <button className="btn btn-danger" onClick={()=>{
             // props.setInventory([9,10,11])
-            props.dispatch({type : '항목추가', 데이터 : { id:3, name: '새로운상품', quan:1} });
+            props.dispatch({type : '항목추가', 데이터 : { id: 찾은상품.id, name: 찾은상품.title, quan:1} });
             history.push('/cart');
           }}>주문하기</button> 
 
