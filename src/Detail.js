@@ -25,20 +25,20 @@ function Detail(props) {
 
   let {id} = useParams();
   let history = useHistory(); //방문기록을 다 저장해놓는 object
-  // let 찾은상품 = props.shoes.find(function(상품){
+  // let findProduct = props.shoes.find(function(상품){
     //   return 상품.id = id
     // });
-  let 찾은상품 = props.shoes.find(x => x.id == id)
+  let findProduct = props.shoes.find(x => x.id == id)
   
-  let 박스 = styled.div`padding : 20px;`;
-  let 제목 = styled.h4`color : ${props => props.색상}`;
+  let box = styled.div`padding : 20px;`;
+  let title = styled.h4`color : ${props => props.색상}`;
 
   return (
     <div className="container">
 
-      <박스>
-        <제목 className="red">Detail</제목>
-      </박스>
+      <box>
+        <title className="red">Detail</title>
+      </box>
 
       {inputData}
       <input onChange={(e)=>{ setInputData(e.target.value)}}/>
@@ -55,18 +55,18 @@ function Detail(props) {
 
       <div className="row">
         <div className="col-md-6">
-          <img src={`https://codingapple1.github.io/shop/shoes${찾은상품.id+1}.jpg`} width="100%" />
+          <img src={`https://codingapple1.github.io/shop/shoes${findProduct.id+1}.jpg`} width="100%" />
         </div>
         <div className="col-md-6 mt-4">
-          <h4 className="pt-5">{찾은상품.title}</h4>
-          <p>{찾은상품.content}</p>
-          <p>{찾은상품.price}</p>
+          <h4 className="pt-5">{findProduct.title}</h4>
+          <p>{findProduct.content}</p>
+          <p>{findProduct.price}</p>
 
           <Info inventory={props.inventory}></Info>
 
           <button className="btn btn-danger" onClick={()=>{
             // props.setInventory([9,10,11])
-            props.dispatch({type : '항목추가', 데이터 : { id: 찾은상품.id, name: 찾은상품.title, quan:1} });
+            props.dispatch({type : '항목추가', 데이터 : { id: findProduct.id, name: findProduct.title, quan:1} });
             history.push('/cart');
           }}>주문하기</button> 
 
