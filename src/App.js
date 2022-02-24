@@ -1,14 +1,17 @@
 /* eslint-disable */
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, lazy, Suspense} from 'react';
 import {Navbar, Container, Nav, Button, Spinner} from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import './App.css';
 import Banner from'./Banner.js';
-import Detail from './Detail.js'
 import Data from './data.js'
 import axios from 'axios';
-import Cart from './Cart.js'
+
+let Detail = lazy (()=>{ return import('./Detail.js')});
+let Cart = lazy (()=> import('./Cart.js'));
+// import Detail from './Detail.js'
+// import Cart from './Cart.js'
 
 export let 재고context = React.createContext(); //범위 생성 문법
 
@@ -28,7 +31,7 @@ function App() {
           <Navbar.Brand as={Link} to="/" href="#home">A+ shop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/Detail">Detail</Nav.Link>
+            {/* <Nav.Link as={Link} to="/Detail">Detail</Nav.Link> */}
             <Nav.Link as={Link} to="/Cart">Cart</Nav.Link>
           </Nav>
         </Container>
@@ -73,13 +76,17 @@ function App() {
         <Route path="/Detail/:id" >
 
           <재고context.Provider value={inventory}>
-            <Detail shoes={shoes} inventory={inventory} setInventory={setInventory}/>
+            <Suspense fallback={<div>로딩중이에요</div>}>
+              <Detail shoes={shoes} inventory={inventory} setInventory={setInventory}/>
+            </Suspense>
           </재고context.Provider>
           
         </Route>
 
         <Route path="/cart">
-          <Cart></Cart>
+          <Suspense>
+            <Cart></Cart>
+          </Suspense>
         </Route>
         
         <Route path="/:id">
