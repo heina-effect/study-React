@@ -1,16 +1,16 @@
 import React, { useEffect, memo } from "react";
-import {Table} from "react-bootstrap"
+import { Table } from "react-bootstrap"
 import { connect, useDispatch, useSelector } from "react-redux";
 import './Detail.scss'
 
-function Cart (props){
+function Cart(props) {
 
-  let state = useSelector((state)=> state);
+  let state = useSelector((state) => state);
   // console.log(state.reducer);
   let dispatch = useDispatch();
 
   return (
-      <div>
+    <div>
       <Table responsive>
         <tr>
           <th>#</th>
@@ -18,27 +18,27 @@ function Cart (props){
           <th>수량</th>
           <th>변경</th>
         </tr>
-          {state.reducer.map((e,i) => {
-            return (
-                <tr key={i}>
-                  <td>{e.id}</td>
-                  <td>{e.name}</td>
-                  <td>{e.quan}</td>
-                  <td>
-                    <button onClick={()=>{ dispatch({type : '수량증가', 데이터 : e.id}) }}>+</button>
-                    <button onClick={()=>{ dispatch({type : '수량감소', 데이터 : e.id}) }}>-</button>
-                  </td>
-                </tr>
-              )
-            })
-          }
+        {state.reducer.map((e, i) => {
+          return (
+            <tr key={i}>
+              <td>{e.id}</td>
+              <td>{e.name}</td>
+              <td>{e.quan}</td>
+              <td>
+                <button onClick={() => { dispatch({ type: '수량증가', 데이터: e.id }) }}>+</button>
+                <button onClick={() => { dispatch({ type: '수량감소', 데이터: e.id }) }}>-</button>
+              </td>
+            </tr>
+          )
+        })
+        }
       </Table>
-      { state.reducer2 === true 
-      ? (<div className="my-alert-red">
-      <p>지금 구매하시면 신규할인 20%</p>
-      <button onClick={()=>{ dispatch({type : 'alert닫기'})}}>닫기</button>
-      </div>)
-      : null
+      {state.reducer2 === true
+        ? (<div className="my-alert-red">
+          <p>지금 구매하시면 신규할인 20%</p>
+          <button onClick={() => { dispatch({ type: 'alert닫기' }) }}>닫기</button>
+        </div>)
+        : null
       }
 
       {/* <Parent 이름="존박22222" 나이="22"></Parent> */}

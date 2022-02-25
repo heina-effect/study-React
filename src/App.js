@@ -1,15 +1,15 @@
 /* eslint-disable */
-import React, {useContext, useState, lazy, Suspense} from 'react';
-import {Navbar, Container, Nav, Button, Spinner} from 'react-bootstrap';
+import React, { useContext, useState, lazy, Suspense } from 'react';
+import { Navbar, Container, Nav, Button, Spinner } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import './App.css';
-import Banner from'./Banner.js';
+import Banner from './Banner.js';
 import Data from './data.js'
 import axios from 'axios';
 
-let Detail = lazy (()=>{ return import('./Detail.js')});
-let Cart = lazy (()=> import('./Cart.js'));
+let Detail = lazy(() => { return import('./Detail.js') });
+let Cart = lazy(() => import('./Cart.js'));
 // import Detail from './Detail.js'
 // import Cart from './Cart.js'
 
@@ -20,7 +20,7 @@ function App() {
   let [shoes, setShoes] = useState(Data);
   let [modal, setModal] = useState(false);
   let [spiner, setSpiner] = useState(true);
-  let [inventory, setInventory] = useState([10,11,12]);
+  let [inventory, setInventory] = useState([10, 11, 12]);
 
   return (
 
@@ -38,7 +38,7 @@ function App() {
       </Navbar>
       <Switch>
         <Route exact path="/">
-          <Banner/>
+          <Banner />
 
           <div className="container">
 
@@ -46,29 +46,29 @@ function App() {
             <재고context.Provider value={inventory}>
               <div className="row">
                 {
-                  shoes.map((a,i)=>{
-                    return <Card shoes={shoes[i]} i={i} key={i}/>
+                  shoes.map((a, i) => {
+                    return <Card shoes={shoes[i]} i={i} key={i} />
                     // return <Card shoes={a}/>
                   })
                 }
               </div>
             </재고context.Provider>
 
-            <button className="btn btn-primary" onClick={()=>{
+            <button className="btn btn-primary" onClick={() => {
               {
                 spiner === true ?
-                <Spinner animation="border" variant="dark" /> : null
+                  <Spinner animation="border" variant="dark" /> : null
               }
               axios.get('https://codingapple1.github.io/shop/data2.json')
-              .then((result)=>{
-                spiner === false;
-                var newData = result.data;
-                setShoes([...shoes, ...newData]);
-              })
-              .catch(()=>{
-                spiner === false;
-                console.log('실패했어요!')
-              });
+                .then((result) => {
+                  spiner === false;
+                  var newData = result.data;
+                  setShoes([...shoes, ...newData]);
+                })
+                .catch(() => {
+                  spiner === false;
+                  console.log('실패했어요!')
+                });
             }}>더보기</button>
           </div>
         </Route>
@@ -77,10 +77,10 @@ function App() {
 
           <재고context.Provider value={inventory}>
             <Suspense fallback={<div>로딩중이에요</div>}>
-              <Detail shoes={shoes} inventory={inventory} setInventory={setInventory}/>
+              <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
             </Suspense>
           </재고context.Provider>
-          
+
         </Route>
 
         <Route path="/cart">
@@ -88,23 +88,23 @@ function App() {
             <Cart></Cart>
           </Suspense>
         </Route>
-        
+
         <Route path="/:id">
-            <div>
-              잘못된경로입니다.
-            </div>
+          <div>
+            잘못된경로입니다.
+          </div>
         </Route>
 
 
       </Switch>
-  
+
       {/* onClick={()=>{setModal(modal=true)}}
       { modal === true ? <Modal/> : null } */}
     </div>
   );
 }
 
-function Modal(){
+function Modal() {
   return (
     <div className="modal">
       <Modal.Dialog>
@@ -125,28 +125,28 @@ function Modal(){
   )
 }
 
-function Card(props){
+function Card(props) {
 
   //hook 사용하기 useContext(범위이름)
   let 재고 = useContext(재고context);
   let history = useHistory();
 
-  return(
+  return (
     <div>
-      <div className="col-md-4" onClick={()=>{ history.push('/detail/' + props.shoes.id) }}>
-        <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1)+ '.jpg'} width="100%" />
+      <div className="col-md-4" onClick={() => { history.push('/detail/' + props.shoes.id) }}>
+        <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'} width="100%" />
         <h4>{props.shoes.title}</h4>
         <p>{props.shoes.content} & {props.shoes.price}</p>
       </div>
-      <Test/>
+      <Test />
     </div>
   )
 }
 
-function Test(){
+function Test() {
 
   let 재고 = useContext(재고context);
-  return(
+  return (
     <p>재고는 : {재고[0]}</p>
   )
 }
