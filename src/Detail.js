@@ -35,22 +35,19 @@ function Detail(props) {
 
   let box = styled.div`padding : 20px;`;
   let title = styled.h4`color : ${props => props.색상}`;
-  
-  let story = [];
-  localStorage.setItem('product', JSON.stringify({ id : `${ findProduct.id }`}))
+
+  let localArray = [];
+  localStorage.setItem('product', JSON.stringify({ id: `${findProduct.id}` }))
   let getLocal = localStorage.getItem('product')
   let parseLocal = JSON.parse(getLocal)
-  story.push(parseLocal);
+  localArray.push(parseLocal);
 
-  for(var i = 0; i <getLocal.length; i++){
-    // if()
+  for (var i = 0; i < getLocal.length; i++) {
   }
 
   return (
     <div className="container">
-      {getLocal}
-      {console.log(parseLocal)}
-      {console.log(story)}
+
       <box>
         <title className="red">Detail</title>
       </box>
@@ -85,7 +82,7 @@ function Detail(props) {
           }}>뒤로가기</button>
         </div>
 
-        <Story getLocal={getLocal} findProduct={findProduct} />
+        <Story localArray={localArray} findProduct={findProduct} />
 
 
       </div>
@@ -138,15 +135,16 @@ function state를props화(state) { //redux store 데이터 가져와서 props로
 
 function Story(props) {
 
-  let parseLocal = JSON.parse(props.getLocal)
-
-  if (props.getLocal) {
+  let getItem = props.localArray.map((item, index) => {
+    return item;
+  })
+  if (getItem) {
     return (
       <Card style={{ width: '18rem' }}>
         <Card.Title>관심가진 상품</Card.Title>
         <Card.Body>
           <Card.Img variant="top" src="holder.js/100px180" />
-          <Card.Text>{parseLocal.title}</Card.Text>
+          <Card.Text>{props.findProduct.id}</Card.Text>
         </Card.Body>
       </Card>)
   }
