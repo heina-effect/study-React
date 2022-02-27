@@ -7,12 +7,10 @@ import { 재고context } from './App.js'
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 
-// detail페이지 들어가면 localStorage 있는 항목을 꺼냄
-// null 이 나오거나 []가 나오거나 ,
-// []가 나오면 거기에 url파라미터 id부분을 push()함 
-// 중복된다면 추가하지 않는다.
-
 function Detail(props) {
+  //styled-components
+  let box = styled.div`padding : 20px;`;
+  let title = styled.h4`color : ${props => props.색상}`;
 
   let [alert, setAlert] = useState(true);
   let [clickTab, setClickTab] = useState(0);
@@ -33,21 +31,21 @@ function Detail(props) {
   // });
   let findProduct = props.shoes.find(x => x.id == id)
 
-  let box = styled.div`padding : 20px;`;
-  let title = styled.h4`color : ${props => props.색상}`;
+  useEffect( () => {
+    let localArray = localStorage.getItem('watched'); //["값"]
 
-  let localArray = [];
-  localStorage.setItem('product', JSON.stringify({ id: `${findProduct.id}` }))
-  let getLocal = localStorage.getItem('product')
-  let parseLocal = JSON.parse(getLocal)
-  localArray.push(parseLocal);
+    if(localArray === null) { localArray = []; }
+    else { localArray = JSON.parse(localArray); } //json형태로 변경['값']
 
-  for (var i = 0; i < getLocal.length; i++) {
-  }
+    localArray.push(id); //['값','값']
+    localArray = new Set(localArray);//중복제거 Set(1) {'1'}
+    localArray = [...localArray]; 
+
+    localStorage.setItem('watched', JSON.stringify(localArray));
+  },[])
 
   return (
     <div className="container">
-
       <box>
         <title className="red">Detail</title>
       </box>
@@ -81,9 +79,12 @@ function Detail(props) {
             history.push('/');
           }}>뒤로가기</button>
         </div>
-
-        <Story localArray={localArray} findProduct={findProduct} />
-
+        
+        {
+          localStorage.getItem('watched') === null 
+          ? null 
+          : <Story shoes={props.shoes}/>
+        }
 
       </div>
 
@@ -134,22 +135,20 @@ function state를props화(state) { //redux store 데이터 가져와서 props로
 }
 
 function Story(props) {
-
-  let getItem = props.localArray.map((item, index) => {
-    return item;
-  })
-  if (getItem) {
-    return (
-      <Card style={{ width: '18rem' }}>
-        <Card.Title>관심가진 상품</Card.Title>
-        <Card.Body>
-          <Card.Img variant="top" src="holder.js/100px180" />
-          <Card.Text>{props.findProduct.id}</Card.Text>
-        </Card.Body>
-      </Card>)
-  }
-  else {
-    return null
-  }
+  let localArray = localStorage.getItem('watched');
+  localArray = JSON.parse(localArray);
+  return (
+    <Card style={{ width: '18rem' }}>
+      <Card.Title>내가 본 상품</Card.Title>
+        {localArray.map( (id,index) => {
+          return ( 
+            <Card.Body key={index}>
+              <Card.Img variant="top" src={`https://codingapple1.github.io/shop/shoes${props.shoes[id].id + 1}.jpg`} width="100%"/>
+              <Card.Text>{props.shoes[id].title}</Card.Text>
+            </Card.Body>
+            )
+          })}
+    </Card>
+  )
 }
 export default connect(state를props화)(Detail)
