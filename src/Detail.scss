@@ -13,6 +13,24 @@ $메인칼라 : #181515;
 .red{
     color: $메인칼라;
 }
+
+.watched-wrap {
+    width: 18rem;
+    position: absolute;
+    top: 25%;
+    right: 0;
+
+    @media #{$phone} {
+        width: 100%;
+        position: inherit;
+
+        div {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
 @mixin 함수() {
     background-color: #eeeeee;
     padding: 20px;

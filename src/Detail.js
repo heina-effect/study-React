@@ -31,18 +31,18 @@ function Detail(props) {
   // });
   let findProduct = props.shoes.find(x => x.id == id)
 
-  useEffect( () => {
+  useEffect(() => {
     let localArray = localStorage.getItem('watched'); //["값"]
 
-    if(localArray === null) { localArray = []; }
+    if (localArray === null) { localArray = []; }
     else { localArray = JSON.parse(localArray); } //json형태로 변경['값']
 
     localArray.push(id); //['값','값']
     localArray = new Set(localArray);//중복제거 Set(1) {'1'}
-    localArray = [...localArray]; 
+    localArray = [...localArray];
 
     localStorage.setItem('watched', JSON.stringify(localArray));
-  },[])
+  }, [])
 
   return (
     <div className="container">
@@ -62,6 +62,7 @@ function Detail(props) {
         <div className="col-md-6">
           <img src={`https://codingapple1.github.io/shop/shoes${findProduct.id + 1}.jpg`} width="100%" />
         </div>
+
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{findProduct.title}</h4>
           <p>{findProduct.content}</p>
@@ -79,14 +80,18 @@ function Detail(props) {
             history.push('/');
           }}>뒤로가기</button>
         </div>
-        
-        {
-          localStorage.getItem('watched') === null 
-          ? null 
-          : <Story shoes={props.shoes}/>
-        }
+
 
       </div>
+
+      <div className='watched-wrap'>
+        {
+          localStorage.getItem('watched') === null
+            ? null
+            : <Story shoes={props.shoes} />
+        }
+      </div>
+        
 
       <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
         <Nav.Item>
@@ -138,17 +143,17 @@ function Story(props) {
   let localArray = localStorage.getItem('watched');
   localArray = JSON.parse(localArray);
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Title>내가 본 상품</Card.Title>
-        {localArray.map( (id,index) => {
-          return ( 
-            <Card.Body key={index}>
-              <Card.Img variant="top" src={`https://codingapple1.github.io/shop/shoes${props.shoes[id].id + 1}.jpg`} width="100%"/>
-              <Card.Text>{props.shoes[id].title}</Card.Text>
-            </Card.Body>
-            )
-          })}
-    </Card>
+    <div>
+      <h5 className="mt-5">내가 본 상품</h5>
+      {localArray.map((id, index) => {
+        return (
+          <figure key={index}>
+            <img variant="top" src={`https://codingapple1.github.io/shop/shoes${props.shoes[id].id + 1}.jpg`} width="100%" />
+            <figcaption>{props.shoes[id].title}</figcaption>
+          </figure>
+        )
+      })}
+    </div>
   )
 }
 export default connect(state를props화)(Detail)

@@ -9,7 +9,7 @@ import Data from './data.js'
 import axios from 'axios';
 
 let Detail = lazy(() => { return import('./Detail.js') });
-let Cart = lazy(() => import('./Cart.js'));
+let Cart = lazy(() => { return import('./Cart.js') });
 // import Detail from './Detail.js'
 // import Cart from './Cart.js'
 
@@ -84,7 +84,7 @@ function App() {
         </Route>
 
         <Route path="/cart">
-          <Suspense>
+          <Suspense fallback={<div>로딩중이에요</div>}>
             <Cart></Cart>
           </Suspense>
         </Route>
@@ -132,8 +132,8 @@ function Card(props) {
   let history = useHistory();
 
   return (
-    <div>
-      <div className="col-md-4" onClick={() => { history.push('/detail/' + props.shoes.id) }}>
+    <div className="col-md-4">
+      <div onClick={() => { history.push('/detail/' + props.shoes.id) }}>
         <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'} width="100%" />
         <h4>{props.shoes.title}</h4>
         <p>{props.shoes.content} & {props.shoes.price}</p>
