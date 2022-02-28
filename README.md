@@ -9,7 +9,7 @@
  Redux와 context API를 이용하여 데이터를 관리하고,  Ajax 등으로 서버 API 요청하였다. <br>
   또한 localStorage를 사용하여 살펴본 상품 목록들을 저장하고 가져와 보여줄 수 있도록 개선하였다.<br>
   
- <h5>사용기술: HTML, CSS(SASS), JavaScript, React, Redux, styled component 등</h5>
+ <h5>사용기술: HTML, CSS(SASS), JavaScript, React, Redux, Bootstrap, styled component 등</h5>
   
   <p> 개선사항: </p>
 1. 반응형 UI,UX 디자인 개선 필요<br>
