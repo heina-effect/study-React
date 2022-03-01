@@ -59,11 +59,11 @@ let store = createStore(combineReducers({ reducer, reducer2 }));
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Provider store={store}>
         <App />
       </Provider>
-    </HashRouter >
+    </BrowserRouter >
   </React.StrictMode>,
   document.getElementById('root')
 );
