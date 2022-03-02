@@ -10,7 +10,7 @@ function Cart(props) {
   let dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="cart">
       <Table responsive>
         <tr>
           <th>#</th>

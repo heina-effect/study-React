@@ -5,6 +5,7 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './App.css';
 import Banner from './Banner.js';
+import Footer from './Footer.js'
 import Data from './data.js'
 import axios from 'axios';
 
@@ -31,11 +32,12 @@ function App() {
           <Navbar.Brand as={Link} to="/" href="#home">A+ shop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
-            {/* <Nav.Link as={Link} to="/Detail">Detail</Nav.Link> */}
             <Nav.Link as={Link} to="/Cart">Cart</Nav.Link>
+            <Nav.Link as={Link} to="/login">login</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
+
       <Switch>
         <Route exact path="/">
           <Banner />
@@ -71,6 +73,7 @@ function App() {
                 });
             }}>더보기</button>
           </div>
+
         </Route>
 
         <Route path="/Detail/:id" >
@@ -98,6 +101,7 @@ function App() {
 
       </Switch>
 
+      <Footer />
       {/* onClick={()=>{setModal(modal=true)}}
       { modal === true ? <Modal/> : null } */}
     </div>
