@@ -3,10 +3,11 @@ import styled from 'styled-components'
 
 function Footer() {
     let StyledFooter = styled.footer`
-    background : #212529;
-    color : rgba(255,255,255,.55);
-    padding-top: 1rem;
+    margin-top: 3rem;
+    color : #777;
+    text-align : right;
     `;
+    
     // let Styledlist = styled.div`
     //   color : rgba(255,255,255,.55);
 
@@ -18,46 +19,15 @@ function Footer() {
     return (
         <StyledFooter className='footer'>
             <div className='container'>
-                <div className='row'>
-                    {/* list-1 */}
-                    <div className='col-md-3 col-sm-3'>
-                        <h4>About Us</h4>
-                        <ul className='list-unstyled'>
-                            <li>내용</li>
-                            <li>내용</li>
-                            <li>내용</li>
-                        </ul>
-                    </div>
-                    {/* list-2 */}
-                    <div className='col-md-3 col-sm-3'>
-                        <h4>Contact Us</h4>
-                        <ul className='list-unstyled'>
-                            <li>내용</li>
-                            <li>내용</li>
-                        </ul>
-                    </div>
-                    {/* list-3 */}
-                    <div className='col-md-3 col-sm-3'>
-                        <h4>Videos</h4>
-                        <ul className='list-unstyled'>
-                            <li>내용</li>
-                            <li>내용</li>
-                            <li>내용</li>
-                        </ul>
-                    </div>
-                    {/* list-4 */}
-                    <div className='col-md-3 col-sm-3'>
-                        <h4>Social Meadia</h4>
-                        <ul className='list-unstyled'>
-                            <li>내용</li>
-                            <li>내용</li>
-                            <li>내용</li>
-                        </ul>
-                    </div>
+                <div className='footer-top'>
+                    <p>This is a page for learning react.<br/>
+                    We've introduced you to some great shoes, but we're sorry you can't buy them.<br/>
+                    But it is said that good shoes take you to good places.<br/>
+                    <strong>I hope your life will also lead to a better place.</strong></p>
                 </div>
                 {/* Footer bottom */}
-                <div className='footer-bottom row'>
-                    <p className='text-xs-center'>
+                <div className='footer-bottom mt-1'>
+                    <p className='text-xs-center mb-0'>
                         &copy;{new Date().getFullYear()} A+shop - All Right Reserved.<br />
                         <i>github - <a href="https://github.com/heina-effect/study-React">A+shop</a></i>
                     </p>

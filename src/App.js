@@ -37,70 +37,70 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
+      
+      <main style={{flex : '1'}}>
+        <Switch>
+          <Route exact path="/">
+            <Banner />
 
-      <Switch>
-        <Route exact path="/">
-          <Banner />
+            <div className="container">
 
-          <div className="container">
+              {/* 값을 공유할 html */}
+              <재고context.Provider value={inventory}>
+                <div className="row">
+                  {
+                    shoes.map((a, i) => {
+                      return <Card shoes={shoes[i]} i={i} key={i} />
+                      // return <Card shoes={a}/>
+                    })
+                  }
+                </div>
+              </재고context.Provider>
 
-            {/* 값을 공유할 html */}
-            <재고context.Provider value={inventory}>
-              <div className="row">
+              <button className="btn btn-primary" onClick={() => {
                 {
-                  shoes.map((a, i) => {
-                    return <Card shoes={shoes[i]} i={i} key={i} />
-                    // return <Card shoes={a}/>
-                  })
+                  spiner === true ?
+                    <Spinner animation="border" variant="dark" /> : null
                 }
-              </div>
+                axios.get('https://codingapple1.github.io/shop/data2.json')
+                  .then((result) => {
+                    spiner === false;
+                    var newData = result.data;
+                    setShoes([...shoes, ...newData]);
+                  })
+                  .catch(() => {
+                    spiner === false;
+                    console.log('실패했어요!')
+                  });
+              }}>더보기</button>
+            </div>
+
+          </Route>
+
+          <Route path="/Detail/:id" >
+
+            <재고context.Provider value={inventory}>
+              <Suspense fallback={<div>로딩중이에요</div>}>
+                <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
+              </Suspense>
             </재고context.Provider>
 
-            <button className="btn btn-primary" onClick={() => {
-              {
-                spiner === true ?
-                  <Spinner animation="border" variant="dark" /> : null
-              }
-              axios.get('https://codingapple1.github.io/shop/data2.json')
-                .then((result) => {
-                  spiner === false;
-                  var newData = result.data;
-                  setShoes([...shoes, ...newData]);
-                })
-                .catch(() => {
-                  spiner === false;
-                  console.log('실패했어요!')
-                });
-            }}>더보기</button>
-          </div>
+          </Route>
 
-        </Route>
-
-        <Route path="/Detail/:id" >
-
-          <재고context.Provider value={inventory}>
+          <Route path="/cart">
             <Suspense fallback={<div>로딩중이에요</div>}>
-              <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
+              <Cart></Cart>
             </Suspense>
-          </재고context.Provider>
+          </Route>
 
-        </Route>
-
-        <Route path="/cart">
-          <Suspense fallback={<div>로딩중이에요</div>}>
-            <Cart></Cart>
-          </Suspense>
-        </Route>
-
-        <Route path="/:id">
-          <div>
-            잘못된경로입니다.
-          </div>
-        </Route>
-
-
-      </Switch>
-
+          <Route path="/:id">
+            <div>
+              잘못된경로입니다.
+            </div>
+          </Route>
+        </Switch>
+      </main>
+      
       <Footer />
       {/* onClick={()=>{setModal(modal=true)}}
       { modal === true ? <Modal/> : null } */}
@@ -140,9 +140,8 @@ function Card(props) {
       <div onClick={() => { history.push('/detail/' + props.shoes.id) }}>
         <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'} width="100%" />
         <h4>{props.shoes.title}</h4>
-        <p>{props.shoes.content} & {props.shoes.price}</p>
+        <p>{props.shoes.content} & {props.shoes.price} </p>
       </div>
-      <Test />
     </div>
   )
 }
