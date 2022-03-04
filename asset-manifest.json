@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/study-React/static/css/main.04df5957.css",
-    "main.js": "/study-React/static/js/main.6cb742c3.js",
+    "main.css": "/study-React/static/css/main.787480fa.css",
+    "main.js": "/study-React/static/js/main.fade60b5.js",
     "static/css/940.9d719f0d.chunk.css": "/study-React/static/css/940.9d719f0d.chunk.css",
     "static/js/940.79d7ece8.chunk.js": "/study-React/static/js/940.79d7ece8.chunk.js",
     "static/css/927.9d719f0d.chunk.css": "/study-React/static/css/927.9d719f0d.chunk.css",
@@ -11,8 +11,8 @@
     "static/media/common2.jpg": "/study-React/static/media/common2.8b8529cc2f19e51f2d78.jpg",
     "static/media/common1.jpg": "/study-React/static/media/common1.d79be4d836f3e79d4322.jpg",
     "index.html": "/study-React/index.html",
-    "main.04df5957.css.map": "/study-React/static/css/main.04df5957.css.map",
-    "main.6cb742c3.js.map": "/study-React/static/js/main.6cb742c3.js.map",
+    "main.787480fa.css.map": "/study-React/static/css/main.787480fa.css.map",
+    "main.fade60b5.js.map": "/study-React/static/js/main.fade60b5.js.map",
     "940.9d719f0d.chunk.css.map": "/study-React/static/css/940.9d719f0d.chunk.css.map",
     "940.79d7ece8.chunk.js.map": "/study-React/static/js/940.79d7ece8.chunk.js.map",
     "927.9d719f0d.chunk.css.map": "/study-React/static/css/927.9d719f0d.chunk.css.map",
@@ -20,7 +20,7 @@
     "787.23170c61.chunk.js.map": "/study-React/static/js/787.23170c61.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.04df5957.css",
-    "static/js/main.6cb742c3.js"
+    "static/css/main.787480fa.css",
+    "static/js/main.fade60b5.js"
   ]
 }
