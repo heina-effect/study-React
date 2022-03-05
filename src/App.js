@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import './App.css';
 import Banner from './Banner.js';
 import Footer from './Footer.js'
+import Login from './login.js'
 import Data from './data.js'
 import axios from 'axios';
 
@@ -32,6 +33,7 @@ function App() {
           <Navbar.Brand as={Link} to="/" href="#home">A+ shop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/Cart">Cart</Nav.Link>
             <Nav.Link as={Link} to="/login">login</Nav.Link>
           </Nav>
@@ -92,6 +94,10 @@ function App() {
               <Cart></Cart>
             </Suspense>
           </Route>
+          
+          <Route path="/login">
+            <Login></Login>
+          </Route>
 
           <Route path="/:id">
             <div>
@@ -134,13 +140,16 @@ function Card(props) {
   //hook 사용하기 useContext(범위이름)
   let 재고 = useContext(재고context);
   let history = useHistory();
+  let [isHover, setIsHover] = useState(false);
 
   return (
     <div className="col-md-4">
       <div onClick={() => { history.push('/detail/' + props.shoes.id) }}>
         <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'} width="100%" />
         <h4>{props.shoes.title}</h4>
-        <p>{props.shoes.content} & {props.shoes.price} </p>
+        <p onMouseOver={()=>setIsHover(true)}
+        onMouseOut={()=>setIsHover(false)}>
+         {isHover ? '더보기' : props.shoes.content +" & "+ props.shoes.price} </p>
       </div>
     </div>
   )
