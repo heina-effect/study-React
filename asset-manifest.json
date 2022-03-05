@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/study-React/static/css/main.787480fa.css",
-    "main.js": "/study-React/static/js/main.fade60b5.js",
+    "main.js": "/study-React/static/js/main.47e11820.js",
     "static/css/940.9d719f0d.chunk.css": "/study-React/static/css/940.9d719f0d.chunk.css",
-    "static/js/940.79d7ece8.chunk.js": "/study-React/static/js/940.79d7ece8.chunk.js",
+    "static/js/940.38ce0a6a.chunk.js": "/study-React/static/js/940.38ce0a6a.chunk.js",
     "static/css/927.9d719f0d.chunk.css": "/study-React/static/css/927.9d719f0d.chunk.css",
     "static/js/927.bd65f9a5.chunk.js": "/study-React/static/js/927.bd65f9a5.chunk.js",
     "static/js/787.23170c61.chunk.js": "/study-React/static/js/787.23170c61.chunk.js",
@@ -12,15 +12,15 @@
     "static/media/common1.jpg": "/study-React/static/media/common1.d79be4d836f3e79d4322.jpg",
     "index.html": "/study-React/index.html",
     "main.787480fa.css.map": "/study-React/static/css/main.787480fa.css.map",
-    "main.fade60b5.js.map": "/study-React/static/js/main.fade60b5.js.map",
+    "main.47e11820.js.map": "/study-React/static/js/main.47e11820.js.map",
     "940.9d719f0d.chunk.css.map": "/study-React/static/css/940.9d719f0d.chunk.css.map",
-    "940.79d7ece8.chunk.js.map": "/study-React/static/js/940.79d7ece8.chunk.js.map",
+    "940.38ce0a6a.chunk.js.map": "/study-React/static/js/940.38ce0a6a.chunk.js.map",
     "927.9d719f0d.chunk.css.map": "/study-React/static/css/927.9d719f0d.chunk.css.map",
     "927.bd65f9a5.chunk.js.map": "/study-React/static/js/927.bd65f9a5.chunk.js.map",
     "787.23170c61.chunk.js.map": "/study-React/static/js/787.23170c61.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.787480fa.css",
-    "static/js/main.fade60b5.js"
+    "static/js/main.47e11820.js"
   ]
 }
