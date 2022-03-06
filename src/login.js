@@ -1,22 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { Form, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from "react-redux";
+import auth from './auth.js'
 // import styled from 'styled-components'
 
+
 function Login() {
+    
+    let initialState = useSelector((state) => state);
+    let reducer3 = useDispatch();
+    //JWT 
+    let [state, dispatch] = useReducer(reducer3, initialState);
+    let { authenticated } = state;
 
-    let [login, setLogin] = useState(false);
+    function handleLogin(id, password) {
+        let token = auth.login(id, password);
 
-    // let Input = styled.input`
-    // border: 1px solid #777
-    // outline : none;
-    // border-radius: 4px;
-    // fonte-size: 1.2rem;
-    // padding: 0.5rem;
-    // margin-left: 1rem;
-    // `
+        if (token) {
+            console.log('로그인 성공!');
+            dispatch({
+                type: 'SET_TOKEN',
+                token: token,
+                result: true,
+            });
+        } else {
+            console.log('로그인 실패');
+            dispatch({
+                type: 'SET_TOKEN',
+                token: null,
+                result: false,
+            });
+        }
+    }
 
     return (
         <div className="Login">
+            <h2>SIGN IN!</h2>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -30,9 +49,9 @@ function Login() {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+                </Form.Group> */}
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useContext, useState, lazy, Suspense } from 'react';
+import React, { useContext, useState, lazy, Suspense, useReducer } from 'react';
 import { Navbar, Container, Nav, Button, Spinner } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -12,8 +12,6 @@ import axios from 'axios';
 
 let Detail = lazy(() => { return import('./Detail.js') });
 let Cart = lazy(() => { return import('./Cart.js') });
-// import Detail from './Detail.js'
-// import Cart from './Cart.js'
 
 export let 재고context = React.createContext(); //범위 생성 문법
 
@@ -80,13 +78,11 @@ function App() {
           </Route>
 
           <Route path="/Detail/:id" >
-
             <재고context.Provider value={inventory}>
               <Suspense fallback={<div>로딩중이에요</div>}>
                 <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
               </Suspense>
             </재고context.Provider>
-
           </Route>
 
           <Route path="/cart">

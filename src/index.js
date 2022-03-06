@@ -11,6 +11,21 @@ import { combineReducers, createStore } from 'redux';
 
 let alert초기값 = true;
 
+//JWT 
+const initialState = {
+  authenticated: false, //인증값여부
+  token: null
+}
+
+function reducer3(state, action) {
+  switch (action.type) {
+      case 'SET_TOKEN':
+          return { ...state, token: action.token, authenticated: action.result };
+      default:
+          return state;
+  }
+}
+
 function reducer2(state = alert초기값, 액션) {
   if (액션.type === 'alert닫기') {
     state = false;
@@ -55,7 +70,7 @@ function reducer(state = 초기값, 액션) {
 }
 
 //state 보관함
-let store = createStore(combineReducers({ reducer, reducer2 }));
+let store = createStore(combineReducers({ reducer, reducer2, reducer3, initialState }));
 
 ReactDOM.render(
   <React.StrictMode>
