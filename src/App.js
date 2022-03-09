@@ -42,7 +42,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Banner />
-
             <div className="container">
 
               {/* 값을 공유할 html */}

@@ -17,14 +17,14 @@ const initialState = {
   token: null
 }
 
-function reducer3(state, action) {
-  switch (action.type) {
-      case 'SET_TOKEN':
-          return { ...state, token: action.token, authenticated: action.result };
-      default:
-          return state;
-  }
-}
+// function reducer3(state, action) {
+//   switch (action.type) {
+//       case 'SET_TOKEN':
+//           return { ...state, token: action.token, authenticated: action.result };
+//       default:
+//           return state;
+//   }
+// }
 
 function reducer2(state = alert초기값, 액션) {
   if (액션.type === 'alert닫기') {
@@ -70,7 +70,7 @@ function reducer(state = 초기값, 액션) {
 }
 
 //state 보관함
-let store = createStore(combineReducers({ reducer, reducer2, reducer3, initialState }));
+let store = createStore(combineReducers({ reducer, reducer2, initialState }));
 
 ReactDOM.render(
   <React.StrictMode>
