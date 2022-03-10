@@ -7,20 +7,12 @@ function Footer() {
     color : #777;
     text-align : right;
     `;
-    
-    // let Styledlist = styled.div`
-    //   color : rgba(255,255,255,.55);
-
-    //   &:hover {
-    //     color: #fff;
-    //   }
-    // `
 
     return (
-        <StyledFooter className='footer'>
+        <StyledFooter className='footer mb-5'>
             <div className='container'>
                 <div className='footer-top'>
-                    <p>This is a page for learning react.<br/>
+                    <p>This is a page for learning React.<br/>
                     We've introduced you to some great shoes, but we're sorry you can't buy them.<br/>
                     But it is said that good shoes take you to good places.<br/>
                     <strong>I hope your life will also lead to a better place.</strong></p>

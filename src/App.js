@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import './App.css';
 import Banner from './Banner.js';
 import Footer from './Footer.js'
+import SnsCard from './SnsCard.js'
 import Login from './login.js'
 import Data from './data.js'
 import axios from 'axios';
@@ -39,13 +40,17 @@ function App() {
       </Navbar>
       
       <main style={{flex : '1'}}>
+
         <Switch>
           <Route exact path="/">
-            <Banner />
-            <div className="container">
 
+            <Banner />
+
+            <div className="container mt-5">
               {/* 값을 공유할 html */}
               <재고context.Provider value={inventory}>
+                <h3>BEST ITEMS</h3>
+                <p>A+ ONLINE SHOP</p>
                 <div className="row">
                   {
                     shoes.map((a, i) => {
@@ -55,8 +60,9 @@ function App() {
                   }
                 </div>
               </재고context.Provider>
-
-              <button className="btn btn-primary" onClick={() => {
+              
+              {/* 버튼 클릭시 상품 가져오기 */}
+              <button className="btn btn-dark" onClick={() => {
                 {
                   spiner === true ?
                     <Spinner animation="border" variant="dark" /> : null
@@ -71,8 +77,10 @@ function App() {
                     spiner === false;
                     console.log('실패했어요!')
                   });
-              }}>더보기</button>
+              }}>MORE</button>
             </div>
+            
+            <SnsCard/>
 
           </Route>
 
@@ -100,6 +108,7 @@ function App() {
             </div>
           </Route>
         </Switch>
+
       </main>
       
       <Footer />
@@ -108,28 +117,6 @@ function App() {
     </div>
   );
 }
-
-function Modal() {
-  return (
-    <div className="modal">
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>Modal body text goes here.</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save nges</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
-    </div>
-  )
-}
-
 function Card(props) {
 
   //hook 사용하기 useContext(범위이름)

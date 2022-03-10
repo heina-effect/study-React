@@ -18,7 +18,7 @@ function Banner() {
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item >
                     <img
                         className="d-block w-100 vh-100"
                         src={`${process.env.PUBLIC_URL}/img/banner02.jpg`}
@@ -30,10 +30,10 @@ function Banner() {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item >
                     <img
                         className="d-block w-100 vh-100"
-                        src={`${process.env.PUBLIC_URL}/img/banner04.jpg`}
+                        src={`${process.env.PUBLIC_URL}/img/banner03.jpg`}
                         alt="Third slide"
                         style={{ objectFit: 'cover' }}
                     />
@@ -42,10 +42,10 @@ function Banner() {
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item >
                     <img
                         className="d-block w-100 vh-100"
-                        src={`${process.env.PUBLIC_URL}/img/banner06.jpg`}
+                        src={`${process.env.PUBLIC_URL}/img/banner04.jpg`}
                         alt="Third slide"
                         style={{ objectFit: 'cover', }}
                     />
