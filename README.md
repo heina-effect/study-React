@@ -1,6 +1,6 @@
 <h1>React-study: A+Shop<h1>
 <div align="center">
-  <!-- <img src="./public/img/mainpage.png" width="90%"> -->
+  <img src="./public/img/mainpage.png" width="90%">
 </div>
 
 <h5>URL: https://heina-effect.github.io/study-React/</h5>
