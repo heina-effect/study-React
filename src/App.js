@@ -5,9 +5,10 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './App.css';
 import Banner from './Banner.js';
-import Footer from './Footer.js'
-import SnsCard from './SnsCard.js'
-import Login from './login.js'
+import Footer from './Footer.js';
+import SnsCard from './SnsCard.js';
+import Login from './login.js';
+import Register from './register.js';
 import Data from './data.js'
 import axios from 'axios';
 
@@ -100,6 +101,10 @@ function App() {
           
           <Route path="/login">
             <Login></Login>
+          </Route>
+
+          <Route path="/register">
+            <Register></Register>
           </Route>
 
           <Route path="/:id">

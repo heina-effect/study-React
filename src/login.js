@@ -1,12 +1,13 @@
 import React, { useState, useReducer } from "react";
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import auth from './auth.js'
 // import styled from 'styled-components'
 
 
 function Login() {
-    
+
     let initialState = useSelector((state) => state);
     let reducer3 = useDispatch();
     //JWT 
@@ -38,7 +39,7 @@ function Login() {
             <h2>SIGN IN!</h2>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address <span style={{color : 'red'}}>*</span></Form.Label>
+                    <Form.Label>Email address <span style={{ color: 'red' }}>*</span></Form.Label>
                     <Form.Control type="email" placeholder="Enter email" />
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
@@ -46,7 +47,7 @@ function Login() {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password <span style={{color : 'red'}}>*</span></Form.Label>
+                    <Form.Label>Password <span style={{ color: 'red' }}>*</span></Form.Label>
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
                 {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -57,9 +58,11 @@ function Login() {
                 </Button>
 
                 <p className="mt-3"> New customer? Create your account </p>
-                <Button variant="outline-secondary" type="submit">
-                    SIGN UP
-                </Button>
+                <Link as={Link} to='/register'>
+                    <Button variant="outline-secondary" type="submit">
+                        SIGN UP
+                    </Button>
+                </Link>
             </Form>
         </div>
     )
